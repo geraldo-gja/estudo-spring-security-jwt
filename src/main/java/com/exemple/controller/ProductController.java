@@ -35,8 +35,8 @@ public class ProductController {
     	return ResponseEntity.ok(list);
     }
 
+    @RolesAllowed("ADMIN")  //pode usar em classe ou métodos
     @DeleteMapping("/{id}")
-    @RolesAllowed("ADMIN")  //TODO não funcionou
     public void delete(@PathVariable Long id){
       this.productRepository.deleteById(id);
     }

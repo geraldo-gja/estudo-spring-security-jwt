@@ -12,6 +12,10 @@ import com.exemple.repository.UsuarioRepository;
 @Service
 public class DBService {
 
+	//OBS: Toda role precisa ter a abreviação 'ROLE_', caso contrário não funciona  
+	private static final String ROLE_ADMIN = "ROLE_ADMIN";
+	private static final String ROLE_USER = "ROLE_USER";
+	
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
@@ -24,8 +28,8 @@ public class DBService {
 		 *  new BCryptPasswordEncoder().encode("123")
 		 *  serve para criptografar a senha
 		 */
-		Usuario u1 = new Usuario(null, "geraldo", new BCryptPasswordEncoder().encode("123"), "ADMIN" ); 
-		Usuario u2 = new Usuario(null, "user", new BCryptPasswordEncoder().encode("123"), "USER" ); 
+		Usuario u1 = new Usuario(null, "geraldo", new BCryptPasswordEncoder().encode("123"), ROLE_ADMIN ); 
+		Usuario u2 = new Usuario(null, "user", new BCryptPasswordEncoder().encode("123"), ROLE_USER ); 
 		this.usuarioRepository.save(u1);
 		this.usuarioRepository.save(u2);
 		
