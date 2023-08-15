@@ -1,6 +1,5 @@
 package com.exemple.entity.security;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -18,15 +17,12 @@ public class UserSecurity implements UserDetails {
 
 	private final Optional<Usuario> usuario;
 
-	
-	// TODO - não ta funcionando, testar também com lista de roles
 	/*
-	 * Trabalha com autoridades (roles) nesse exemplo trabalhamos com apenas 1
+	 * Trabalha com autoridades (roles) nesse exemplo usa apenas 1
 	 */
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of(new SimpleGrantedAuthority(usuario.get().getRole()));
-//		return new ArrayList<>();
 	}
 
 	@Override

@@ -23,7 +23,7 @@ import com.exemple.service.DBService;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(jsr250Enabled = true)   //fazer as anotações das roles funcionarem
 @Profile("test")  //não feito no video
-public class Configurations {
+public class SecurityConfig {
 	
 	//não feito no video
 	@Autowired
@@ -51,24 +51,18 @@ public class Configurations {
 				.and().authorizeHttpRequests()
 				.antMatchers(HttpMethod.POST, "/login").permitAll()
 				.antMatchers(HttpMethod.GET, "/home").permitAll()
-				
-//				.antMatchers("/product/**").hasRole("ADMIN")
-  
-			//  .anyRequest().authenticated().and()   //utilizar essa linha se não usar o H2-console
-					
-				 //INICIO H2-console. liberar o acesso ao Banco H2
+			//  .anyRequest().authenticated().and()   //utilizar essa linha se não usar o H2-console			
+			//INICIO H2-console. liberar o acesso ao Banco H2
 				.antMatchers("/h2-console/**").permitAll()
 	            .anyRequest().authenticated().and()
 	            .csrf().disable()
 	            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 	            .and().headers().frameOptions().sameOrigin()
 	            .and()  
-	            //FIM H2-console
-	            
+	       //FIM H2-console  
 	            .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
 	            .build();  //sempre finalizar com esse comando.
-		
-		
+
 		return security;
 	}
 	

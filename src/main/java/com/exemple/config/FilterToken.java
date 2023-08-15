@@ -2,7 +2,6 @@ package com.exemple.config;
 
 import java.io.IOException;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.FilterChain;
@@ -12,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -43,7 +43,7 @@ public class FilterToken extends OncePerRequestFilter {
 			
 			Optional<Usuario> user = this.usuarioRepository.findByLogin(subject);
 			UserSecurity usuario = new UserSecurity(user);
-			Collection authorities = usuario.getAuthorities();
+			Collection<? extends GrantedAuthority> authorities = usuario.getAuthorities();
 			
 			//authentica usuário e roles
 			UsernamePasswordAuthenticationToken authentication =
