@@ -15,11 +15,10 @@ public class TokenService {
 		
 		String token = JWT.create()
 				.withIssuer("Produtos")
-				.withSubject(usuario.getUsername())
+				.withSubject(usuario.getLogin())
 				.withClaim("id", usuario.getId())
 				.withExpiresAt(LocalDateTime.now()   //vai esperar o token por 10 minutos
 						.plusMinutes(10)
-				//		.plusSeconds(30)   //apenas para testar
 						.toInstant(ZoneOffset.of("-03:00")))
 				.sign(Algorithm.HMAC256("secreta"));
 		

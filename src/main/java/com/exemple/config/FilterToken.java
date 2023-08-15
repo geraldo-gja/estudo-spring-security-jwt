@@ -1,7 +1,6 @@
 package com.exemple.config;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -15,7 +14,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.exemple.entity.Usuario;
-import com.exemple.entity.security.UserSecurity;
 import com.exemple.repository.UsuarioRepository;
 import com.exemple.service.security.TokenService;
 
@@ -39,8 +37,9 @@ public class FilterToken extends OncePerRequestFilter {
 			token = authorizationHeader.replace("Bearer ", "");   //remover o nome Bearer que vem no início do token
 			String subject = this.tokenService.getSubject(token);
 			
-			Optional<Usuario> user = this.usuarioRepository.findByLogin(subject);
-			UserSecurity usuario = new UserSecurity(user);
+//			Optional<Usuario> user = this.usuarioRepository.findByLogin(subject);
+//			UserSecurity usuario = new UserSecurity(user);
+			Usuario usuario = this.usuarioRepository.findByLogin(subject);
 			
 			//authentica usuário e roles
 			UsernamePasswordAuthenticationToken authentication = 
