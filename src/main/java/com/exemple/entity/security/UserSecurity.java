@@ -17,8 +17,7 @@ public class UserSecurity implements UserDetails {
 	private static final long serialVersionUID = 1L;
 
 	private final Optional<Usuario> usuario;
-	
-	
+
 	
 	// TODO - não ta funcionando, testar também com lista de roles
 	/*
