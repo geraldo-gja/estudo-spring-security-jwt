@@ -45,30 +45,24 @@ public class Configurations {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		
 		SecurityFilterChain security;
-		
+			
 		security = http.csrf().disable()
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and().authorizeHttpRequests()
-				.antMatchers(HttpMethod.POST, "/login")
-				.permitAll()
-				.antMatchers(HttpMethod.GET, "/home")
-				.permitAll()
+				.antMatchers(HttpMethod.POST, "/login").permitAll()
+				.antMatchers(HttpMethod.GET, "/home").permitAll()
+				
+//				.antMatchers("/product/**").hasRole("ADMIN")
+  
 			//  .anyRequest().authenticated().and()   //utilizar essa linha se não usar o H2-console
 					
-				/*
-				 * INICIO H2-console
-				 * liberar o acesso ao Banco H2
-				 * trecho de código não disponibilizado no vídeo
-				 */
-				
-				.antMatchers("/h2-console/**") 
-	            .permitAll()
-	            .anyRequest().authenticated()
-	            .and().csrf().disable()
+				 //INICIO H2-console. liberar o acesso ao Banco H2
+				.antMatchers("/h2-console/**").permitAll()
+	            .anyRequest().authenticated().and()
+	            .csrf().disable()
 	            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 	            .and().headers().frameOptions().sameOrigin()
-	            .and()
-	            
+	            .and()  
 	            //FIM H2-console
 	            
 	            .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
@@ -77,6 +71,7 @@ public class Configurations {
 		
 		return security;
 	}
+	
 		
 	/*
 	 * Para o Spring injetar a propriedade na classe AuthController
