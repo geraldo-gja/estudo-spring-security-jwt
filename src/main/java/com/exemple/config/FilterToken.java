@@ -14,8 +14,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import com.exemple.entity.Usuario;
 import com.exemple.entity.security.UserSecurity;
+import com.exemple.entity.security.Usuario;
 import com.exemple.repository.UsuarioRepository;
 import com.exemple.service.security.TokenService;
 

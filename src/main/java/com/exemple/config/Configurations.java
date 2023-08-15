@@ -60,6 +60,7 @@ public class Configurations {
 				 * liberar o acesso ao Banco H2
 				 * trecho de código não disponibilizado no vídeo
 				 */
+				
 				.antMatchers("/h2-console/**") 
 	            .permitAll()
 	            .anyRequest().authenticated()
@@ -67,6 +68,7 @@ public class Configurations {
 	            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 	            .and().headers().frameOptions().sameOrigin()
 	            .and()
+	            
 	            //FIM H2-console
 	            
 	            .addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class)
@@ -75,7 +77,7 @@ public class Configurations {
 		
 		return security;
 	}
-	
+		
 	/*
 	 * Para o Spring injetar a propriedade na classe AuthController
 	 */
@@ -86,7 +88,6 @@ public class Configurations {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
 	
-	
 	/*
 	 * Descriptografar a senha no BD 
 	 */
@@ -94,6 +95,5 @@ public class Configurations {
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
-	
 	
 }

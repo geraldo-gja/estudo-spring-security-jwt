@@ -5,7 +5,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.exemple.entity.Product;
-import com.exemple.entity.Usuario;
+import com.exemple.entity.security.Usuario;
 import com.exemple.repository.ProductRepository;
 import com.exemple.repository.UsuarioRepository;
 

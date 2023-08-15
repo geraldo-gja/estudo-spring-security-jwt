@@ -8,8 +8,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.exemple.entity.Usuario;
 import com.exemple.entity.security.UserSecurity;
+import com.exemple.entity.security.Usuario;
 import com.exemple.repository.UsuarioRepository;
 
 @Service

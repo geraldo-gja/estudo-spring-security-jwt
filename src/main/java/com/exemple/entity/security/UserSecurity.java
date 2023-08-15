@@ -7,8 +7,6 @@ import java.util.Optional;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import com.exemple.entity.Usuario;
-
 import lombok.Data;
 
 @Data

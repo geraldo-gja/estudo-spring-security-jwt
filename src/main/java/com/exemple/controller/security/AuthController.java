@@ -32,7 +32,6 @@ public class AuthController {
 
 		UserSecurity usuario = (UserSecurity) authentication.getPrincipal();
 		
-		String s = tokenService.gerarToken(usuario.getUsuario().get());
-		return s;
+		return tokenService.gerarToken(usuario.getUsuario().get());
 	}
 }
