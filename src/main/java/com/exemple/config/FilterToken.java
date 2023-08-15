@@ -1,6 +1,8 @@
 package com.exemple.config;
 
 import java.io.IOException;
+import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.FilterChain;
@@ -41,10 +43,11 @@ public class FilterToken extends OncePerRequestFilter {
 			
 			Optional<Usuario> user = this.usuarioRepository.findByLogin(subject);
 			UserSecurity usuario = new UserSecurity(user);
-
+			Collection authorities = usuario.getAuthorities();
+			
 			//authentica usuário e roles
 			UsernamePasswordAuthenticationToken authentication =
-					new UsernamePasswordAuthenticationToken(usuario, null, usuario.getAuthorities());
+					new UsernamePasswordAuthenticationToken(usuario, null, authorities);
 			
 			//após a autenticação, informa ao Spring que o usuário está logado
 			SecurityContextHolder.getContext().setAuthentication(authentication);
